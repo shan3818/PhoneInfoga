@@ -1,6 +1,6 @@
 ```
 $ python3 phoneinfoga.py -h
-usage: phoneinfoga.py -n <number> [options]
+usage: phoneinfoga.py -n <+(614)31710670> [options]
 
 Advanced information gathering tool for phone numbers
 (https://github.com/sundowndev/PhoneInfoga) version v1.6.8
@@ -24,13 +24,13 @@ optional arguments:
 #### Basic scan
 
 ```
-python3 phoneinfoga.py -n "(+42) 837544833"
+python3 phoneinfoga.py -n "(+614)31710670 "
 ```
 
 Country code and special chars such as `( ) - +` will be escaped so typing US-based numbers stay easy : 
 
 ```
-python3 phoneinfoga.py -n "+1 555-444-3333"
+python3 phoneinfoga.py -n "(+614)31710670
 ```
 
 Note that the country code is essential. You don't know which country code to use ? [Find it here](https://www.countrycode.org/)
@@ -48,7 +48,7 @@ Input file must contain one phone number per line. Invalid numbers will be skipp
 #### Footprinting
 
 ```
-python3 phoneinfoga.py -n +42837544833 -s footprints
+python3 phoneinfoga.py -n(+614)31710670 -s footprints
 ```
 
 #### Custom format reconnaissance
@@ -56,7 +56,7 @@ python3 phoneinfoga.py -n +42837544833 -s footprints
 You don't know where to search and what custom format to use ? Let the tool try several custom formats based on the country code for you.
 
 ```
-python3 phoneinfoga.py -n +42837544833 -s any --recon
+python3 phoneinfoga.py -n(+614)31710670 -s any --recon
 ```
 
 ## Available scanners
@@ -78,7 +78,7 @@ Use `any` to disable this feature. Default value: `all`
 Check for a number range on OVH :
 
 ```
-python3 phoneinfoga.py -n "+33 01 88 33 40 32" -s ovh
+python3 phoneinfoga.py -n "(+614)31710670 -s ovh
 ```
 
 Output : 
@@ -86,7 +86,7 @@ Output :
 ```
 [!] ---- Fetching informations for 330188334032 ---- [!]
 [*] Running local scan...
-[+] International format: +33 1 88 33 40 32
+[+] International format: (+614)31710670
 [+] Local format: 188334032
 [+] Country found: France (+33)
 [+] City/Area: France
