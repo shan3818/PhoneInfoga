@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 #
-# @name   : PhoneInfoga - Phone numbers OSINT tool
+# @name   : PhoneInfoga - Phone numbers scan +61431710670
 # @url    : https://github.com/sundowndev
 # @author : Raphael Cerveaux (sundowndev)
 
