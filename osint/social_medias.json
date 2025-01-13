@@ -1,6 +1,6 @@
 [
   {
-    "site": "facebook.com",
+    "site": "facebook.com", 
     "request": "site:\"facebook.com\" \"$i\" OR \"$n\" OR \"$l\"",
     "stop": 5
   },
