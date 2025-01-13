@@ -1,0 +1,138 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+      
+```
+$ shan3818 phoneinfoga.py -h
+usage: phoneinfoga.py -n <+(614)31710670> [options]
+
+Advanced information gathering tool for phone numbers
+(https://github.com/sundowndev/PhoneInfoga) version v1.6.8
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -n number, --number number
+                        The phone number to scan (E164 or international
+                        format)
+  -i input_file, --input input_file
+                        Phone number list to scan (one per line)
+  -o output_file, --output output_file
+                        Output to save scan results
+  -s scanner, --scanner scanner
+                        The scanner to use
+  --recon               Launch custom format reconnaissance
+  --no-ansi             Disable colored output
+  -v, --version         Show tool version
+```
+
+#### Basic scan
+
+```
+shan3818 phoneinfoga.py -n "(+614)31710670 "
+```
+
+Country code and special chars such as `( ) - +` will be escaped so typing US-based numbers stay easy : 
+
+```
+shan3818 phoneinfoga.py -n "(+614)31710670
+```
+
+Note that the country code is essential. You don't know which country code to use ? [Find it here](https://www.countrycode.org/)
+
+#### Output file  Australia
+
+Check several numbers at once and send results to a file. Optionally, ensure no color code is used with `--no-ansi`
+
+```
+shan3818 phoneinfoga.py -i numbers.txt -o results.txt --no-ansi
+```
+
+Input file must contain one phone number per line. Invalid numbers will be skipped.
+
+#### Footprinting
+
+```
+Shan3818 phoneinfoga.py -n 0431710670 -s footprints
+```
+
+#### Custom format reconnaissance
+
+You don't know where to search and what custom format to use ? Let the tool try several custom formats based on the country code for you.
+
+```
+Shan3818 phoneinfoga.py -n(+614)31710670 -s any --recon
+```
+
+## Available scanners
+
+Use `any` to disable this feature. Default value: `all`
+
+- numverify
+- ovh
+- footprints
+#### Custom format reconnaissance
+
+You don't know where to search and what custom format to use ? Let the tool try several custom formats based on the country code for you.
+
+```
+Shan3818 phoneinfoga.py -n(+614)31710670 -s any --recon
+```
+
+## Available scanners
+
+Use `any` to disable this feature. Default value: `all`
+
+- numverify
+- ovh
+- footprints
+
+**Numverify** provide standard but useful informations such as number's country code, location, line type and carrier.
+
+**OVH** is, besides being a web and cloud hosting company, a telecom provider with several VoIP numbers in the Europe. Thanks to their API-key free [REST API](https://api.ovh.com/), we are able to tell if a number is owned by OVH Telecom or not.
+
+**Footprints** scanner uses Google search engine and [Google Dorks](https://en.wikipedia.org/wiki/Google_hacking) to search phone number's footprints everywhere on the web. It allows you to search for scam reports, social media profiles, documents and more.
+
+#### Examples
+
+Check for a number range on OVH :
+
+```
+Shan3818 phoneinfoga.py -n "(+614)31710670 -s ovh
+```
+
+Output : 
+
+```
+[!] ---- Fetching informations for 0431710670 ---- [!]
+[*] Running local scan...
+[+] International format: (+614)31710670
+[+] Local format: 
+[+] Country found: Austrlia +(614)
+[+] City/Area: 
+[+] Carrier: 
+[+] Timezone: 
+[i] The number is valid and possible.
+[*] Running OVH scan...
+[+] 1 result found in OVH database
+[+] Number range: 
+[+] City: 
+[+] Zip code: 
+Continue scanning ? (y/N) 
+[i] Good bye!
+```
